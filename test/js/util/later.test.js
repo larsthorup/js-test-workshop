@@ -1,8 +1,8 @@
-/*global describe, it, expect, window */
+/*global jasmine, describe, beforeEach, afterEach, it, expect, window */
 describe('util.later', function () {
     'use strict';
 
-    describe('add', function () {
+    describe('add, slow', function () {
 
         it('should add correctly', function (done) {
             window.later.add(2, 3, function (err, sum) {
@@ -14,13 +14,34 @@ describe('util.later', function () {
 
     });
 
-    describe('adding', function () {
+    describe('adding, slow', function () {
 
         it('should add correctly', function (done) {
             var adding = window.later.adding(2, 3);
             adding.then(function (sum) {
                 expect(sum).toBe(5);
                 done();
+            });
+        });
+
+    });
+
+    describe('adding, fast', function () {
+
+        beforeEach(function () {
+            jasmine.clock().install();
+        });
+
+        afterEach(function () {
+            jasmine.clock().uninstall();
+        });
+
+        it('should add correctly', function () {
+            var adding = window.later.adding(2, 3);
+            jasmine.clock().tick(window.later.delay);
+            adding.then(function (sum) {
+                expect(sum).toBe(5);
+                // Note: no longer asynchronous(!)
             });
         });
 
