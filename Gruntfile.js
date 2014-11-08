@@ -30,7 +30,8 @@ module.exports = function (grunt) {
             maxparams: 3, maxdepth: 2, maxstatements: 50},
         all: [
             'Gruntfile.js',
-            'src/js/**/*.js'
+            'src/js/**/*.js',
+            'test/js/**/*.js'
         ]
     };
     grunt.registerTask('lint', 'jshint');
@@ -42,10 +43,9 @@ module.exports = function (grunt) {
         src: {
             src: [
                 'src/js/**/*.js',
-                '!src/js/**/*.test.js'
             ],
             options: {
-                specs: 'src/js/**/*.test.js',
+                specs: 'test/js/**/*.test.js',
                 junit: {
                     path: 'output/testresults'
                 }
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     gruntConfig.watch = {
         scripts: {
-            files: ['src/**/*.*'],
+            files: ['src/**/*.*', 'test/**/*.*'],
             tasks: ['lint', 'test']
         }
     };
