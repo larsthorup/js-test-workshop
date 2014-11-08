@@ -46,7 +46,10 @@ module.exports = function (grunt) {
             ],
             options: {
                 specs: 'test/js/**/*.test.js',
-                vendor: 'src/lib/**/*.js',
+                vendor: [
+                    'src/lib/**/*.js',
+                    'test/lib/**/*.js'
+                ],
                 junit: {
                     path: 'output/testresults'
                 }
