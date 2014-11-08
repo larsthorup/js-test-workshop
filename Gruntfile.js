@@ -42,10 +42,11 @@ module.exports = function (grunt) {
     gruntConfig.jasmine = {
         src: {
             src: [
-                'src/js/**/*.js',
+                'src/js/**/*.js'
             ],
             options: {
                 specs: 'test/js/**/*.test.js',
+                vendor: 'src/lib/**/*.js',
                 junit: {
                     path: 'output/testresults'
                 }
@@ -69,6 +70,7 @@ module.exports = function (grunt) {
         src: gruntConfig.jasmine.src.src,
         options: {
             specs: gruntConfig.jasmine.src.options.specs,
+            vendor: gruntConfig.jasmine.src.options.vendor,
             template: require('grunt-template-jasmine-istanbul'),
             templateOptions: {
                 coverage: 'output/cover/coverage.json',
