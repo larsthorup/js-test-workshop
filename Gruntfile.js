@@ -1,4 +1,4 @@
-/*global module, require*/
+/*global module*/
 module.exports = function (grunt) {
     'use strict';
 
@@ -8,7 +8,7 @@ module.exports = function (grunt) {
 
     // convenience
     grunt.registerTask('default', ['lint', 'test']);
-    grunt.registerTask('all', ['clean', 'lint', 'test', 'cover']);
+    grunt.registerTask('all', ['clean', 'lint', 'test']);
 
     // continuous integration
     grunt.registerTask('ci', ['lint', 'cover']);
@@ -37,26 +37,43 @@ module.exports = function (grunt) {
     grunt.registerTask('lint', 'jshint');
 
 
-    // test
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
-    gruntConfig.jasmine = {
-        src: {
-            src: [
-                'src/js/**/*.js'
-            ],
-            options: {
-                specs: 'test/js/**/*.test.js',
-                vendor: [
-                    'src/lib/**/*.js',
-                    'test/lib/**/*.js'
+    // karma
+    grunt.loadNpmTasks('grunt-karma');
+    gruntConfig.karma = {
+        options: {
+            preprocessors: {
+                'src/js/**/*.js': ['coverage']
+            },
+            frameworks: ['jasmine'],
+            files: ['src/lib/**/*.js', 'src/js/**/*.js', 'test/lib/**/*.js', 'test/js/**/*.test.js'],
+            reporters: ['progress', 'coverage', 'junit'],
+            coverageReporter: {
+                reporters: [
+                    {type: 'lcov'},
+                    {type: 'html'},
+                    {type: 'cobertura'},
+                    {type: 'text-summary'}
                 ],
-                junit: {
-                    path: 'output/testresults'
-                }
+                dir: 'output/coverage'
+            },
+            junitReporter: {
+                outputFile: 'output/test/test-results.xml'
             }
+        },
+        phantomjs: {
+            browsers: ['PhantomJS'],
+            singleRun: true
+        },
+        firefox: {
+            browsers: ['Firefox'],
+            autoWatch: true
+        },
+        chrome: {
+            browsers: ['Chrome'],
+            autoWatch: true
         }
     };
-    grunt.registerTask('test', 'jasmine:src');
+    grunt.registerTask('test', 'karma:phantomjs');
 
     // watch
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -66,27 +83,6 @@ module.exports = function (grunt) {
             tasks: ['lint', 'test']
         }
     };
-
-
-    // cover
-    gruntConfig.jasmine.istanbul = {
-        src: gruntConfig.jasmine.src.src,
-        options: {
-            specs: gruntConfig.jasmine.src.options.specs,
-            vendor: gruntConfig.jasmine.src.options.vendor,
-            template: require('grunt-template-jasmine-istanbul'),
-            templateOptions: {
-                coverage: 'output/cover/coverage.json',
-                report: [
-                    {type: 'lcov', options: {dir: 'output/cover'}},
-                    {type: 'html', options: {dir: 'output/cover'}},
-                    {type: 'cobertura', options: {dir: 'output/cover/cobertura'}},
-                    {type: 'text-summary'}
-                ]
-            }
-        }
-    };
-    grunt.registerTask('cover', 'jasmine:istanbul');
 
     // grunt
     grunt.initConfig(gruntConfig);
