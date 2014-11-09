@@ -1,4 +1,3 @@
-/*global window, $, describe, it, expect, spyOn */
 describe('weather', function () {
     'use strict';
 

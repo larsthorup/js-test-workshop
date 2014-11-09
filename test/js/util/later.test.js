@@ -1,4 +1,3 @@
-/*global jasmine, describe, beforeEach, afterEach, it, expect, window */
 describe('util.later', function () {
     'use strict';
 

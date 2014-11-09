@@ -1,4 +1,3 @@
-/*global window, describe, beforeEach, afterEach, it, expect, $*/
 describe('menu responsive', function () {
     'use strict';
     var fixture;

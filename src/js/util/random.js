@@ -1,4 +1,3 @@
-/*global Math*/
 (function (Math) {
     'use strict';
 

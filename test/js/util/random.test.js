@@ -1,4 +1,3 @@
-/*global Math, describe, beforeEach, spyOn, it, expect */
 describe('util.random', function () {
     'use strict';
 

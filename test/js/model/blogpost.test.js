@@ -1,4 +1,3 @@
-/*global window, describe, beforeEach, afterEach, xit, expect, jasmine*/
 describe('BlogPost', function () {
     'use strict';
 
