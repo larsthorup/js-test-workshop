@@ -1,6 +1,10 @@
 describe('weather', function () {
     'use strict';
 
+    afterEach(function () {
+        $.mockjaxClear();
+    });
+
     it('renders', function () {
 
         // given
