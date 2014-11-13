@@ -54,12 +54,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-karma');
     gruntConfig.karma = {
         options: {
-            preprocessors: {
-                'src/js/**/*.js': ['coverage']
-            },
             frameworks: ['jasmine'],
             files: ['src/lib/**/*.js', 'src/js/**/*.js', 'test/lib/**/*.js', 'test/js/**/*.test.js'],
-            reporters: ['progress', 'coverage', 'junit'],
             coverageReporter: {
                 reporters: [
                     {type: 'lcov'},
@@ -74,15 +70,21 @@ module.exports = function (grunt) {
             }
         },
         phantomjs: {
+            preprocessors: {
+                'src/js/**/*.js': ['coverage']
+            },
+            reporters: ['progress', 'coverage', 'junit'],
             browsers: ['PhantomJS'],
             singleRun: true
         },
         firefox: {
             browsers: ['Firefox'],
+            reporters: ['progress'],
             autoWatch: true
         },
         chrome: {
             browsers: ['Chrome'],
+            reporters: ['progress'],
             autoWatch: true
         }
     };

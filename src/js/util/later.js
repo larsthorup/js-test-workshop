@@ -1,7 +1,7 @@
 (function (window, $) {
     'use strict';
 
-    var delay = 100;
+    var delay = 200;
 
     function add(a, b, cb) {
         window.setTimeout(function () {
