@@ -1,15 +1,17 @@
-describe('menu responsive', function () {
+describe('menu css', function () {
     'use strict';
     var fixture;
     var iframe;
     var items;
 
     beforeEach(function () {
+        var menuCss = $.ajax('/base/src/css/menu.css', {async: false}).responseText;
         fixture = $('<div id="fixture"></div>').appendTo('body');
         iframe = $('<iframe></iframe>').appendTo(fixture); // Note: need to be in the DOM for styles to apply
         var $doc = $(iframe.get(0).contentDocument);
-        window.menu.render($doc);
-        items = $doc.find('.menu li');
+        $('<style></style>').text(menuCss).appendTo($doc.find('head'));
+        var menuHtml = $('<ul class="menu"><li>Item 1</li><li>Item 2</li></ul>').appendTo($doc.find('body'));
+        items = menuHtml.find('li');
     });
 
     afterEach(function () {

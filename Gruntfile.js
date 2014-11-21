@@ -55,7 +55,7 @@ module.exports = function (grunt) {
     gruntConfig.karma = {
         options: {
             frameworks: ['jasmine'],
-            files: ['src/lib/**/*.js', 'src/js/**/*.js', 'test/lib/**/*.js', 'test/js/**/*.test.js'],
+            files: ['src/lib/**/*.js', 'src/js/**/*.js', 'src/css/**/*.css', 'test/lib/**/*.js', 'test/js/**/*.test.js'],
             coverageReporter: {
                 reporters: [
                     {type: 'lcov'},
@@ -67,7 +67,8 @@ module.exports = function (grunt) {
             },
             junitReporter: {
                 outputFile: 'output/test/test-results.xml'
-            }
+            },
+            logLevel: grunt.option('verbose') ? 'DEBUG' : 'INFO'
         },
         phantomjs: {
             preprocessors: {
