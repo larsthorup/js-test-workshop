@@ -19,8 +19,7 @@ describe('BlogPost', function () {
             jasmine.clock().tick(42000);
         });
 
-        // ToDo: only works with jasmine-2.0.2, not yet in karma-jasmine
-        xit('compute age correctly', function () {
+        it('compute age correctly', function () {
             expect(post.age()).toBe(42000);
         });
     });
