@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     grunt.registerTask('all', ['clean', 'lint', 'test']);
 
     // continuous integration
-    grunt.registerTask('ci', ['lint', 'cover']);
+    grunt.registerTask('ci', ['lint', 'test']);
 
 
     // clean
