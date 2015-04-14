@@ -21,11 +21,11 @@
 "maxparams": 3,
 "maxdepth": 2,
 "maxstatements": 50,
+"jquery": true,
+"browser": true,
 "globals": {
-    "jQuery": true,
     "Math": true,
     "module": true,
-    "window": true,
 
     "afterEach": true,
     "beforeEach": true,
@@ -33,9 +33,7 @@
     "expect": true,
     "it": true,
     "jasmine": true,
-
     "spyOn": true,
-    "xit": true,
-    "$": true
+    "xit": true
   }
 }
