@@ -1,9 +1,14 @@
+/* globals require */
 module.exports = function (grunt) {
     'use strict';
+
+    // load tasks from all grunt packages in package.json
+    require('load-grunt-tasks')(grunt);
 
     var gruntConfig = {
         pkg: grunt.file.readJSON('package.json')
     };
+
 
     // convenience
     grunt.registerTask('default', ['lint', 'test']);
@@ -14,14 +19,12 @@ module.exports = function (grunt) {
 
 
     // clean
-    grunt.loadNpmTasks('grunt-contrib-clean');
     gruntConfig.clean = {
         output: ['output']
     };
 
 
     // lint
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     gruntConfig.jshint = {
         all: [
             'Gruntfile.js',
@@ -36,7 +39,6 @@ module.exports = function (grunt) {
 
 
     // karma
-    grunt.loadNpmTasks('grunt-karma');
     gruntConfig.karma = {
         options: {
             frameworks: ['jasmine'],
@@ -77,7 +79,6 @@ module.exports = function (grunt) {
     grunt.registerTask('test', 'karma:phantomjs');
 
     // watch
-    grunt.loadNpmTasks('grunt-contrib-watch');
     gruntConfig.watch = {
         scripts: {
             files: ['src/**/*.*', 'test/**/*.*'],
