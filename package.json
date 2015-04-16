@@ -1,5 +1,6 @@
 {
     "name": "js-test-workshop",
+    "repository": "https://github.com/larsthorup/js-test-workshop",
     "version": "0.1.2",
     "description": "Javascript unit test workshop material",
     "author": "Lars Thorup <lars@zealake.com>",
