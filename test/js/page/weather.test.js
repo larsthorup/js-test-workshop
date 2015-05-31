@@ -5,19 +5,6 @@ describe('weather', function () {
         $.mockjaxClear();
     });
 
-    it('renders', function () {
-
-        // given
-        var context = $('<div></div>');
-        var weatherData = { text: 'rain' };
-
-        // when
-        window.Weather.render(context, weatherData);
-
-        // then
-        expect(context.find('p').text()).toBe('rain');
-    });
-
     it('fetches', function (done) {
         // given
         $.mockjax({
@@ -42,6 +29,19 @@ describe('weather', function () {
             expect(data.text).toBe('sun');
             done();
         });
+    });
+
+    it('renders', function () {
+
+        // given
+        var context = $('<div></div>');
+        var weatherData = { text: 'rain' };
+
+        // when
+        window.Weather.render(context, weatherData);
+
+        // then
+        expect(context.find('p').text()).toBe('rain');
     });
 
     it('listens', function () {
