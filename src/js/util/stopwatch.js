@@ -1,8 +1,6 @@
 (function (window) {
   'use strict';
 
-  var delay = 200;
-
   function time(fn, cb) {
     var start = Date.now();
     fn(function () {
