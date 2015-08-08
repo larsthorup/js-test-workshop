@@ -51,7 +51,7 @@ module.exports = function (grunt) {
                 dir: 'output/coverage'
             },
             junitReporter: {
-                outputFile: 'output/test/test-results.xml'
+                outputDir: 'output/test'
             },
             logLevel: grunt.option('verbose') ? 'DEBUG' : 'INFO'
         },
