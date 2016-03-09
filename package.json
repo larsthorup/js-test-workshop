@@ -26,6 +26,7 @@
   "scripts": {
     "coveralls": "cat ./output/coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "travis": "grunt ci && npm run coveralls",
-    "test": "grunt ci"
+    "test": "grunt ci",
+    "test:chrome": "grunt karma:chrome"
   }
 }
